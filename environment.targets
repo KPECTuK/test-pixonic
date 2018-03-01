@@ -1,0 +1,28 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+	<PropertyGroup>
+		<!-- TODO: extract from registry -->
+		<MonoPath>C:\Program Files (x86)\Mono\</MonoPath>
+		<UnityInstallFolder>$(registry:HKEY_CURRENT_USER\Software\Unity Technologies\Installer\Unity@Location x64)</UnityInstallFolder>
+		<UnityInstallVersion>$(registry:HKEY_CURRENT_USER\Software\Unity Technologies\Installer\Unity@Version)</UnityInstallVersion>
+		<MSUnityToolsBridgePath>$(registry:HKEY_CURRENT_USER\Software\Microsoft\Microsoft Visual Studio 2015 Tools for Unity@UnityExtensionPath)</MSUnityToolsBridgePath>
+		<ReferencePath>$(UnityInstallFolder)\Editor\Data\</ReferencePath>
+		<UnityBleedingEdgePath>($UnityInstallFolder)\Editor\Data\MonoBleedidngEdge\</UnityBleedingEdgePath>
+		<MonoMdbGenerator>$(MonoPath)lib\mono\4.5\pdb2mdb.exe</MonoMdbGenerator>
+		<!-- cli.bat should be copied from the unity mono bin folder -->
+		<MonoCLI>$(MonoPath)bin\cli.bat</MonoCLI>
+		<UnityManagedPath>$(UnityInstallFolder)\Editor\Data\Managed\</UnityManagedPath>
+		<UnityExtensionsPath>$(UnityInstallFolder)\Editor\Data\UnityExtensions\Unity\</UnityExtensionsPath>
+		<UnityProjectPath Condition=" '$(UnityProjectPath)' == '' ">$(SolutionDir)$(AssemblyName).Unity\</UnityProjectPath>
+		<AssetsPath>$(UnityProjectPath)Assets\</AssetsPath>
+		<AssetsExternalsPath>$(AssetsPath)Externals\</AssetsExternalsPath>
+		<AssetsExternalsCompanyPath>$(AssetsExternalsPath)Crossy\</AssetsExternalsCompanyPath>
+		<AssetsExternalsCompanyEditorPath>$(AssetsExternalsCompanyPath)Editor\</AssetsExternalsCompanyEditorPath>
+		<UnityProjectAssemblies>$(UnityProjectPath)Library\UnityAssemblies\</UnityProjectAssemblies>
+		<ModulesPath>$(SolutionDir)modules\</ModulesPath>
+		<EnvironmentModulePath>$(ModulesPath)env\</EnvironmentModulePath>
+	</PropertyGroup>
+	<Import Project="$(EnvironmentModulePath)defines-debug.targets" Condition="Exists('$(EnvironmentModulePath)defines-debug.targets')" />
+	<Import Project="$(EnvironmentModulePath)defines-debug-editor.targets" Condition="Exists('$(EnvironmentModulePath)defines-debug-editor.targets')" />
+	<Import Project="$(EnvironmentModulePath)defines-release.targets" Condition="Exists('$(EnvironmentModulePath)defines-release.targets')" />
+	<Import Project="$(EnvironmentModulePath)defines-release-editor.targets" Condition="Exists('$(EnvironmentModulePath)defines-release-editor.targets')" />
+</Project>
