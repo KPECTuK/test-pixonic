@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,9 +49,55 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Module\Class1.cs" />
+    <Compile Include="Module.Core\CompositionRoot.cs" />
+    <Compile Include="Module.Core\SimService.cs" />
+    <Compile Include="Module.Core\TimeService.cs" />
+    <Compile Include="Module.Serialization\CustomTypeBinder.cs" />
+    <Compile Include="Module.Data\IModRouter.cs" />
+    <Compile Include="Module.Data\IUltimateData.cs" />
+    <Compile Include="Module.Serialization\TimeSpanConverter.cs" />
+    <Compile Include="Module.Data\UnitBehaviorDefault.cs" />
+    <Compile Include="Module.Data\IUnitBehavior.cs" />
+    <Compile Include="Module.Data\ModRouterBase.cs" />
+    <Compile Include="Module.Data\ModRouterAlly.cs" />
+    <Compile Include="Module.Data\UltimateDataAttackPowerMod.cs" />
+    <Compile Include="Module.Data\UltimateDataCastMod.cs" />
+    <Compile Include="Module.Data\ModRouterFoe.cs" />
+    <Compile Include="Module.Data\HeroData.cs" />
+    <Compile Include="Module.Data\IDataContainer.cs" />
+    <Compile Include="Module.Data\PlayerId.cs" />
+    <Compile Include="Module.Data\RealmData.cs" />
+    <Compile Include="Module.Data\Repository.cs" />
+    <Compile Include="Module.Data\UltimateDataSpeedMod.cs" />
+    <Compile Include="Module.Data\UltimateDataBase.cs" />
+    <Compile Include="Module.Data\UnitBehaviorBase.cs" />
+    <Compile Include="Module.Generic\ServiceLocator.cs" />
+    <Compile Include="Module.Logger\DefaultLoggerFactory[TLogger].cs" />
+    <Compile Include="Module.Extensions\UtilityExtensions.cs" />
+    <Compile Include="Module.Generic\IContext.cs" />
+    <Compile Include="Module.Logger\DefaultLoggerImpl.cs" />
+    <Compile Include="Module.Logger\ILogger.cs" />
+    <Compile Include="Module.Logger\ILoggerFactory.cs" />
+    <Compile Include="Module.Generic\IProvider[T].cs" />
+    <Compile Include="Module.Logger\Level.cs" />
+    <Compile Include="Module.Logger\LoggerFactoryBase[TLogger].cs" />
+    <Compile Include="Module.Logger\LoggerImpl.cs" />
+    <Compile Include="Module.Resources.Adapters\DefaultAdapter[T].cs" />
+    <Compile Include="Module.Resources.Adapters\TextAdapter.cs" />
+    <Compile Include="Module.Resources\IResourceAdapter[T].cs" />
+    <Compile Include="Module.Resources\IResourceFactory.cs" />
+    <Compile Include="Module.Resources\ResourceId.cs" />
+    <Compile Include="Module.Resources\ResourceLocator.cs" />
+    <Compile Include="Module.Resources\ResourceFactory.cs" />
+    <Compile Include="Module.Resources\ResourcesExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <EmbeddedResource Include="Resources\heroes.json" />
+    <EmbeddedResource Include="Resources\realm.json" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

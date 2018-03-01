@@ -1,0 +1,89 @@
+[
+	{
+		"name": "hero-1",
+		"hit-points": 100, // hits till death (int)
+		"speed": 2.0, // move in units
+		"attack-power": 5, // discrete hit (int)
+		"attack-radius": 2.0, // units
+		"attack-speed": 5.0, // dps
+		"behavior": 
+		[
+			{
+				"$type": "UnitBehaviorDefault"
+			}
+		],
+		"ultimate":
+		[
+			{
+				"$type": "UltimateDataCastMod",
+				"stacking": false,
+				"router":
+				{
+					"$type": "ModRouterFoe"
+				},
+				//
+				"factor": 0.5,
+				"duration": "1.0s",
+				"cool-down": "1.0s"
+			}
+		]
+	},
+	{
+		"name": "hero-2",
+		"hit-points": 100,
+		"speed": 2.0,
+		"attack-power": 2,
+		"attack-radius": 10.0,
+		"attack-speed": 5.0, // ?
+		"behavior": 
+		[
+			{
+				"$type": "UnitBehaviorDefault"
+			}
+		],
+		"ultimate":
+		[
+			{
+				"$type": "UltimateDataSpeedMod",
+				"stacking": false,
+				"router":
+				{
+					"$type": "ModRouterFoe"
+				},
+				//
+				"factor": 0.5,
+				"duration": "1.0s"
+			}
+		]
+	},
+	{
+		"name": "hero-3",
+		"hit-points": 100,
+		"speed": 2.0,
+		"attack-power": 2,
+		"attack-radius": 2.0,
+		"attack-speed": 2.0, // ?
+		"behavior": 
+		[
+			{
+				"$type": "UnitBehaviorDefault"
+			}
+		],
+		"ultimate":
+		[
+			{
+				"$type": "UltimateDataAttackPowerMod",
+				"stacking": false,
+				"router": 
+				{
+					"$type": "ModRouterAlly",
+					"self-apply": false
+				},
+				//
+				"factor": 2.0,
+				"distance": 5.0,
+				"chance": 0.5 // normalized
+			}
+		]
+	}
+]
