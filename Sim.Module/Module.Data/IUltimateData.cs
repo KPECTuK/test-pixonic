@@ -1,4 +1,7 @@
 namespace Sim.Module.Data
 {
-	public interface IUltimateData { }
+	public interface IUltimateData
+	{
+		IUltimateData Copy();
+	}
 }

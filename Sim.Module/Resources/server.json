@@ -1,0 +1,25 @@
+{
+	"clients":
+	[
+		{
+			"latency": "10",
+			"variance": "0",
+			"lost": 0.0 
+		},
+		{
+			"latency": "20",
+			"variance": "0",
+			"lost": 0.0 
+		},
+		{
+			"latency": "40",
+			"variance": "0",
+			"lost": 0.0 
+		},
+		{
+			"latency": "80",
+			"variance": "20",
+			"lost": 0.0 
+		}
+	]
+}

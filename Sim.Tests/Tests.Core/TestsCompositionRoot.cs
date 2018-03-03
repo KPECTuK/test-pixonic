@@ -1,14 +1,14 @@
-using Sim.Module.Core;
 using Sim.Module.Generic;
 using Sim.Module.Logger;
 
 namespace Sim.Tests.Core
 {
-	public class TestsCompositionRoot : ServiceLocator
+	public class TestsCompositionRoot : ServiceLocator, IRootContext
 	{
-		public TestsCompositionRoot() : base(new CompositionRoot())
+		public TestsCompositionRoot(IContext context) : base(context)
 		{
-			RegisterInstance(new DefaultLoggerFactory<TestsLoggerImpl>());
+			RegisterInstance<IRootContext>(this);
+			RegisterInstance<ILoggerFactory>(new DefaultLoggerFactory<TestsLoggerImpl>());
 		}
 	}
 }

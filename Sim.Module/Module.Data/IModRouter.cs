@@ -1,4 +1,7 @@
 namespace Sim.Module.Data
 {
-	public interface IModRouter { }
+	public interface IModRouter
+	{
+		IModRouter Copy();
+	}
 }

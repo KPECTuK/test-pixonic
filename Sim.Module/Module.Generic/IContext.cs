@@ -1,8 +1,5 @@
 namespace Sim.Module.Generic
 {
-	/// <summary>
-	///     Интерфейс контекста - композиционного узла.
-	/// </summary>
 	public interface IContext
 	{
 		T Resolve<T>() where T : class;

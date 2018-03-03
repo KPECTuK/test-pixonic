@@ -1,3 +1,36 @@
 {
-	"tick-time": 1.0 // ticks per second
+	"sync-interval": "200", // ms
+	"sync-deviation": "160", // ms
+	"max-players": 4,
+	"max-teams": 2,
+	"spawn-points": [
+		[
+			{
+				"$type": "Vector3",
+				"X": 1.0,
+				"Y": 1.0,
+				"Z": 1.0
+			},
+			{
+				"$type": "Vector3",
+				"X": 1.0,
+				"Y": 1.0,
+				"Z": 1.0
+			}
+		],
+		[
+			{
+				"$type": "Vector3",
+				"X": 1.0,
+				"Y": 1.0,
+				"Z": 1.0
+			},
+			{
+				"$type": "Vector3",
+				"X": 1.0,
+				"Y": 1.0,
+				"Z": 1.0
+			}
+		]
+	]
 }

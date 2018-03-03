@@ -178,6 +178,7 @@ namespace Sim.Module.Generic
 
 		public void Release()
 		{
+			//! might be a loop
 			foreach(var value in _singletons?.Values ?? new object[] { })
 			{
 				(value as IDisposable)?.Dispose();
