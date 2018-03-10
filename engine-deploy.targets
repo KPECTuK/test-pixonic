@@ -1,0 +1,31 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+	<ItemGroup>
+		<SourceFiles Include="$(TargetDir)*.*">
+			<InProject>False</InProject>
+		</SourceFiles>
+	</ItemGroup>
+	<Target Name="BeforeBuild">
+		<CallTarget Targets="PrebuildTarget" />
+		<CallTarget Targets="DeleteFiles" />
+	</Target>
+	<Target Name="AfterBuild">
+		<CallTarget Targets="CopyFiles" />
+	</Target>
+	<Target Name="PrebuildTarget">
+		<!--Copy SourceFiles="$(UnityInstallFolder)Editor\Data\Mono\bin\cli.bat" DestinationFolder="$(MonoPath)bin\" Condition="!Exists('$(MonoCLI)')" /-->
+		<Message Text="---- Assembly: $(AssemblyName)" Importance="high" />
+		<Message Text="Unity: $(UnityInstallFolder)" Importance="high" />
+		<Message Text="Unity Managed: $(UnityManagedPath)" Importance="high" />
+		<Message Text="Unity Extensions: $(UnityExtensionsPath)" Importance="high" />
+		<Message Text="Unity Project: $(UnityProjectPath)" Importance="high" />		
+	</Target>
+	<Target Name="DeleteFiles">
+		<Delete Files="@(SourceFiles->'$(AssetsExternalsCompanyPath)%(RecursiveDir)%(Filename)%(Extension)')" />
+		<Delete Files="$(AssetsExternalsCompanyPath)$(AssemblyName).dll.mdb" Condition="Exists('$(AssetsExternalsCompanyPath)$(AssemblyName).dll.mdb')" />
+	</Target>
+	<Target Name="CopyFiles">
+		<Copy SourceFiles="@(SourceFiles)" DestinationFiles="@(SourceFiles->'$(AssetsExternalsCompanyPath)%(RecursiveDir)%(Filename)%(Extension)')"  Condition="Exists('$(UnityProjectPath)')" />
+		<Message Text="Copy To: $(AssetsExternalsCompanyPath) ..done" Importance="High" Condition="Exists('$(AssetsExternalsCompanyPath)$(AssemblyName).dll')" />
+		<Message Text="Copy To: $(AssetsExternalsCompanyPath) ..fail" Importance="High" Condition="!Exists('$(AssetsExternalsCompanyPath)$(AssemblyName).dll')" />
+	</Target>
+</Project>

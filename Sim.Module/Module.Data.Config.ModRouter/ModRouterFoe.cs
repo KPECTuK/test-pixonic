@@ -1,4 +1,4 @@
-namespace Sim.Module.Data.Config
+namespace Sim.Module.Data.Config.ModRouter
 {
 	public class ModRouterFoe : ModRouterBase<ModRouterFoe>
 	{

@@ -1,6 +1,8 @@
 using System;
+using System.Linq;
 using Sim.Module.Client;
 using Sim.Module.Data;
+using Sim.Module.Data.Config;
 using Sim.Module.Data.Ids;
 using Sim.Module.Data.State;
 using Sim.Module.Logger;
@@ -23,8 +25,11 @@ namespace Sim.Module.Generic
 
 		public void ReSpawnPlayer(PlayerId id)
 		{
-			//throw new NotImplementedException();
-			//var player = Context.Resolve<IRepository>().GetPlayerStates(-1, _ => _.Id.Equals(id));
+			var repository = Context.Resolve<IRepository>();
+			var player = repository.GetPlayerStates(_ => _.Id.Equals(id)).FirstOrDefault();
+			var config = repository.GetConfig<HeroData>(_ => _.Name.Equals(player.HeroName)).FirstOrDefault();
+			player.ActiveBehavior = config.Behavior.FirstOrDefault().Copy();
+			player.HitPoints = config.HitPoints;
 		}
 
 		public Vector3 GetSpawnPoint(TeamId teamId)

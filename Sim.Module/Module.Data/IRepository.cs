@@ -15,7 +15,7 @@ namespace Sim.Module.Data
 		void ShiftStates();
 		void SetTeam(TeamId teamId);
 		Vector3[] GetSpawnPoints(TeamId teamId);
-		IEnumerable<HeroData> GetConfig();
+		IEnumerable<T> GetConfig<T>(Func<T, bool> filter) where T : class, IDataContainer<T>, new();
 		void MergeStates(PlayerState[] difference);
 		IEnumerable<PlayerState> GetPlayerStates(Func<PlayerState, bool> filter);
 	}

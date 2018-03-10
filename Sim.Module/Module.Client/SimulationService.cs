@@ -8,7 +8,12 @@ using Sim.Module.Logger;
 
 namespace Sim.Module.Client
 {
-	public class SimService
+	public class SimulationLink
+	{
+
+	}
+
+	public class SimulationService
 	{
 		private readonly IContext _context;
 		private readonly Type _selfType;
@@ -16,7 +21,7 @@ namespace Sim.Module.Client
 
 		public PlayerId LocalId { get; set; }
 
-		public SimService(IContext context)
+		public SimulationService(IContext context)
 		{
 			_context = context;
 			_selfType = GetType();

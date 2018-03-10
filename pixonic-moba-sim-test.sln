@@ -9,6 +9,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sim.Tests", "Sim.Tests\Sim.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sim.Launcher", "Sim.Launcher\Sim.Launcher.csproj", "{40AF40BC-C997-4E41-8DFC-8598D1B09AB9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sim.Unity", "Sim.Unity", "{4D304605-69CA-4C84-85D3-2A1A44B090B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sim.Unity", "Sim.Unity\Sim.Unity.csproj", "{28D19BFF-2F75-151D-3503-51933AB84388}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sim.Unity.Editor", "Sim.Unity\Sim.Unity.Editor.csproj", "{7A0062D9-60E8-82F1-3C36-28441C9C6097}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +33,16 @@ Global
 		{40AF40BC-C997-4E41-8DFC-8598D1B09AB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40AF40BC-C997-4E41-8DFC-8598D1B09AB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40AF40BC-C997-4E41-8DFC-8598D1B09AB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28D19BFF-2F75-151D-3503-51933AB84388}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28D19BFF-2F75-151D-3503-51933AB84388}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A0062D9-60E8-82F1-3C36-28441C9C6097}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A0062D9-60E8-82F1-3C36-28441C9C6097}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{28D19BFF-2F75-151D-3503-51933AB84388} = {4D304605-69CA-4C84-85D3-2A1A44B090B0}
+		{7A0062D9-60E8-82F1-3C36-28441C9C6097} = {4D304605-69CA-4C84-85D3-2A1A44B090B0}
 	EndGlobalSection
 EndGlobal

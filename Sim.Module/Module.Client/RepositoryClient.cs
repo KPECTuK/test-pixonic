@@ -15,7 +15,7 @@ namespace Sim.Module.Client
 
 			var current = CurrentState.PlayerStates;
 			var firstFree = Array.FindIndex(current, _ => ReferenceEquals(null, _));
-			current[firstFree] = new PlayerState { Id = Context.Resolve<SimService>().LocalId };
+			current[firstFree] = new PlayerState { Id = Context.Resolve<SimulationService>().LocalId };
 			Context.Resolve<IRealmController>().SetupPlayer(current[firstFree]);
 		}
 

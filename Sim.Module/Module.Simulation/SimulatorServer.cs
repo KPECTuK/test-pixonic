@@ -52,7 +52,7 @@ namespace Sim.Module.Simulation
 			Array.ForEach(_connections, _ => _.Initialize());
 			Array.ForEach(_clientContexts, _ =>
 			{
-				var simService = _.Resolve<SimService>();
+				var simService = _.Resolve<SimulationService>();
 				var repository = _.Resolve<IRepository>();
 				simService.Initialize();
 				var command = _.Resolve<ICommandBuilder>().BuildRequest<CommandJoinRequest>(simService.LocalId);
@@ -71,17 +71,22 @@ namespace Sim.Module.Simulation
 			return _connections.FirstOrDefault(_ => _.PlayerId.Equals(id));
 		}
 
+		public PlayerId GetLocalPlayerId()
+		{
+			return _connections.FirstOrDefault()?.PlayerId;
+		}
+
 		public void Update()
 		{
 			Array.ForEach(_connections, _ => _.UpdateIncoming());
 			Array.ForEach(_connections, _ => _.UpdateOutgoing());
-			Array.ForEach(_clientContexts, _ => _.Resolve<SimService>().UpdateSimulation());
+			Array.ForEach(_clientContexts, _ => _.Resolve<SimulationService>().UpdateSimulation());
 
 			if(!Array.TrueForAll(_connections, _ => _.IsEstablished))
 			{
 				return;
 			}
-
+			
 			var builder = _context.Resolve<ICommandBuilder>();
 			if(builder.CurrentServerUpdateInterval > DateTime.UtcNow - _lastUpdate)
 			{

@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Sim.Module.Data.Config
+namespace Sim.Module.Data.Config.ModRouter
 {
 	public class ModRouterAlly : ModRouterBase<ModRouterAlly>
 	{

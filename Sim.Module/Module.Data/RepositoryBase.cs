@@ -23,7 +23,7 @@ namespace Sim.Module.Data
 		private TeamState[] _teams;
 		private RealmState[] _states;
 		private int _currentStateIndex;
-		private readonly Func<PlayerState, bool> _filterDefault = _ => true;
+		private readonly Func<PlayerState, bool> _filterDefaultPlayerState = _ => true;
 
 		protected RealmState CurrentState => _states[_currentStateIndex];
 
@@ -42,7 +42,7 @@ namespace Sim.Module.Data
 
 		public IEnumerable<PlayerState> GetPlayerStates(Func<PlayerState, bool> filter)
 		{
-			return _states[_currentStateIndex].PlayerStates.Where(filter ?? _filterDefault);
+			return _states[_currentStateIndex].PlayerStates.Where(filter ?? _filterDefaultPlayerState);
 		}
 
 		public abstract void MergeStates(PlayerState[] difference);
@@ -99,9 +99,18 @@ namespace Sim.Module.Data
 		}
 
 		// IRepository
-		public IEnumerable<HeroData> GetConfig()
+		public IEnumerable<T> GetConfig<T>(Func<T, bool> filter) where T : class, IDataContainer<T>, new()
 		{
-			return _heroesCache;
+			if(typeof(T) == typeof(HeroData))
+			{
+				return _heroesCache.OfType<T>().Where(filter ?? (_ => true));
+			}
+			if(typeof(T) == typeof(RealmData))
+			{
+				return new[] { (_reamData as object) as T };
+			}
+
+			return new T[] { };
 		}
 
 		// IProvider<RealmData>

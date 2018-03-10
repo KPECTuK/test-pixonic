@@ -29,7 +29,7 @@ namespace Sim.Module.Client
 			RegisterInstance<IRandomService>(utility);
 			RegisterInstance<ITimeService>(utility);
 			RegisterInstance<ICommandBuilder>(new ClientCommandBuilder(this));
-			RegisterInstance(new SimService(this));
+			RegisterInstance(new SimulationService(this));
 			RegisterInstance(new ClientCommandQueue(this));
 		}
 	}

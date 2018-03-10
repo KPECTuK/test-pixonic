@@ -19,7 +19,7 @@ namespace Sim.Module.Command
 				state.ApplyDifference(Deference.FirstOrDefault(_ => _.Id.Equals(state.Id)));
 			}
 			var command = Context.Resolve<ICommandBuilder>().BuildResponse<CommandStateSyncResponse, CommandStateSyncRequest>(this);
-			command.StateUpdate = Context.Resolve<IRepository>().GetPlayerStates(_ => _.Id.Equals(Context.Resolve<SimService>().LocalId)).FirstOrDefault();
+			command.StateUpdate = Context.Resolve<IRepository>().GetPlayerStates(_ => _.Id.Equals(Context.Resolve<SimulationService>().LocalId)).FirstOrDefault();
 			Context.Resolve<INetworkClientConnection>().SendToServer(command);
 		}
 	}

@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace Sim.Module.Data.Config
+namespace Sim.Module.Data.Config.Ultimate
 {
 	public class UltimateDataAttackPowerMod : UltimateDataBase<UltimateDataAttackPowerMod>
 	{

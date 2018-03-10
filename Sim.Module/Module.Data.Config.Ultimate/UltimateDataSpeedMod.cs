@@ -1,20 +1,18 @@
 using System;
 using Newtonsoft.Json;
 
-namespace Sim.Module.Data.Config
+namespace Sim.Module.Data.Config.Ultimate
 {
-	public class UltimateDataCastMod : UltimateDataBase<UltimateDataCastMod>
+	public class UltimateDataSpeedMod : UltimateDataBase<UltimateDataSpeedMod>
 	{
 		[JsonProperty("factor")] public float Factor { get; set; }
 		[JsonProperty("duration")] public TimeSpan Duration { get; set; }
-		[JsonProperty("cooldown")] public TimeSpan Cooldown { get; set; }
 
-		public override UltimateDataCastMod Copy()
+		public override UltimateDataSpeedMod Copy()
 		{
 			var result = base.Copy();
 			result.Factor = Factor;
 			result.Duration = Duration;
-			result.Cooldown = Cooldown;
 			return result;
 		}
 	}

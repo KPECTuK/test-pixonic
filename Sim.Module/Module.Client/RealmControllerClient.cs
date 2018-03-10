@@ -1,4 +1,4 @@
-using Sim.Module.Data.Config;
+using Sim.Module.Data.Config.Behavior;
 using Sim.Module.Data.State;
 using Sim.Module.Generic;
 using Sim.Module.Logger;
@@ -11,7 +11,7 @@ namespace Sim.Module.Client
 
 		public override void SetupPlayer(PlayerState state)
 		{
-			if(Context.Resolve<SimService>().LocalId.Equals(state.Id))
+			if(Context.Resolve<SimulationService>().LocalId.Equals(state.Id))
 			{
 				SetupLocalPlayer(state);
 				Logger.Log(SelfType, Level.Debug, $"setup LOCAL player: id:{state.Id} hero:{state.HeroName} team:{state.TeamId?.ToString() ?? "[undefined]"}", null);
@@ -24,7 +24,9 @@ namespace Sim.Module.Client
 
 		private void SetupLocalPlayer(PlayerState state)
 		{
-			state.HeroName = Context.Resolve<IRandomService>().GetHero().Name;
+			var heroConfig = Context.Resolve<IRandomService>().GetHero();
+			state.HeroName = heroConfig.Name;
+			state.HitPoints = heroConfig.HitPoints;
 			state.ActiveBehavior = new UnitBehaviorHidden();
 		}
 	}

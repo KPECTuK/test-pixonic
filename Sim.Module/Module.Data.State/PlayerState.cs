@@ -9,6 +9,7 @@ namespace Sim.Module.Data.State
 		[JsonProperty("pid")] public PlayerId Id { get; set; }
 		[JsonProperty("pos")] public Vector3 Position { get; set; }
 		[JsonProperty("spd")] public Vector3 Speed { get; set; }
+		[JsonProperty("hit")] public int HitPoints { get; set; }
 		[JsonProperty("cbh")] public IUnitBehavior ActiveBehavior { get; set; }
 		[JsonProperty("tem")] public TeamId TeamId { get; set; }
 		[JsonProperty("hro")] public string HeroName { get; set; }
@@ -28,11 +29,13 @@ namespace Sim.Module.Data.State
 
 		public PlayerState GetDifference(PlayerState source)
 		{
+			// TODO: merge
+
 			return new PlayerState
 			{
 				Id = Id,
-				Position = source.Position - Position,
-				Speed = source.Speed - Speed,
+				Position = Position,
+				Speed = Speed,
 				ActiveBehavior = source.ActiveBehavior.Equals(ActiveBehavior)
 					? null
 					: source.ActiveBehavior.Copy(),
@@ -42,8 +45,10 @@ namespace Sim.Module.Data.State
 
 		public void ApplyDifference(PlayerState difference)
 		{
-			Position += difference.Position;
-			Speed += difference.Speed;
+			// TODO: merge
+
+			Position = difference.Position;
+			Speed = difference.Speed;
 			ActiveBehavior = difference.ActiveBehavior ?? ActiveBehavior;
 		}
 	}

@@ -17,7 +17,7 @@ namespace Sim.Tests
 		{
 			var context = new ClientCompositionRoot(new TestsCompositionRoot(null));
 			context.RegisterInstance<INetworkClientConnection>(new NetworkConnectionStub());
-			context.Resolve<SimService>().Initialize();
+			context.Resolve<SimulationService>().Initialize();
 			context.Release();
 		}
 
@@ -41,7 +41,7 @@ namespace Sim.Tests
 		{
 			var context = new ClientCompositionRoot(new TestsCompositionRoot(null));
 			var repository = context.Resolve<IRepository>();
-			context.Resolve<SimService>().LocalId = new PlayerId("player_".MakeUnique());
+			context.Resolve<SimulationService>().LocalId = new PlayerId("player_".MakeUnique());
 			repository.ReloadConfig();
 			repository.ReloadState(2);
 			repository.SetTeam(new TeamId("team_".MakeUnique()));

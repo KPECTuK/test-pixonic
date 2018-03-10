@@ -1,3 +1,5 @@
+#define USE_NATIVE_RANDOM
+
 using System;
 using System.Linq;
 using Sim.Module.Data;
@@ -39,23 +41,31 @@ namespace Sim.Module.Client
 
 		public int GetInt()
 		{
+			#if USE_NATIVE_RANDOM
+			return (int)((uint)(UnityEngine.Random.value * uint.MaxValue) - int.MinValue);
+			#else
 			return _randomGenerator.Next();
+			#endif
 		}
 
 		public TimeSpan GetInterval()
 		{
-			return new TimeSpan(_randomGenerator.Next());
+			return new TimeSpan(GetInt());
 		}
 
 		public double GetNormalized()
 		{
+			#if USE_NATIVE_RANDOM
+			return UnityEngine.Random.value;
+			#else
 			return _randomGenerator.NextDouble();
+			#endif
 		}
 
 		public HeroData GetHero()
 		{
-			var heroes = _context.Resolve<IRepository>().GetConfig().ToArray();
-			return heroes[_randomGenerator.Next() % heroes.Length];
+			var heroes = _context.Resolve<IRepository>().GetConfig<HeroData>(null).ToArray();
+			return heroes[Math.Abs(GetInt()) % heroes.Length];
 		}
 	}
 }

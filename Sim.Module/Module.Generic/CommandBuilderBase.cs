@@ -30,6 +30,8 @@ namespace Sim.Module.Generic
 
 		protected abstract Dictionary<Type, ConstructorInfo> Correspondences { get; } // conformity
 
+		// TODO: use target interval
+
 		public TimeSpan CurrentServerUpdateInterval =>
 			_lag.Values.Count > 0
 				? _lag.Values.Max()
@@ -134,7 +136,7 @@ namespace Sim.Module.Generic
 
 		public void Dispose()
 		{
-			_inProgress.ToList().ForEach(_ => Logger.Log(SelfType, Level.Debug, $"player: {_.PlayerId} request: {_.RequestId} timestamp: {_.BuildTimeStamp}", null));
+			Logger.Log(SelfType, Level.Debug, _inProgress.ToText("requests in progress", _ => $"player: {_.PlayerId} request: {_.RequestId} timestamp: {_.BuildTimeStamp}"), null);
 		}
 	}
 }

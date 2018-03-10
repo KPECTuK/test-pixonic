@@ -11,6 +11,7 @@
     <AssemblyName>Sim.Module</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <UnityProjectPath>$(SolutionDir)Sim.Unity\</UnityProjectPath>
   </PropertyGroup>
   <Import Project="$(SolutionDir)environment.targets" Condition="Exists('$(SolutionDir)environment.targets')" />
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -49,6 +50,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Module.Data.Config.Behavior\UnitBehaviorEvade.cs" />
+    <Compile Include="Module.Data.Config.Behavior\UnitBehaviorFollow.cs" />
+    <Compile Include="Module.Data.Config.Behavior\UnitBehaviorHold.cs" />
+    <Compile Include="Module.Data.Config.Behavior\UnitBehaviorUltimate.cs" />
     <Compile Include="Module.Data\IStateContainer.cs" />
     <Compile Include="Module.Generic\RealmControllerBase.cs" />
     <Compile Include="Module.Command\CommandJoinResponse.cs" />
@@ -72,9 +77,9 @@
     <Compile Include="Module.Client\INetworkClientConnection.cs" />
     <Compile Include="Module.Client\IRandomService.cs" />
     <Compile Include="Module.Client\ITimeService.cs" />
-    <Compile Include="Module.Client\SimService.cs" />
+    <Compile Include="Module.Client\SimulationService.cs" />
     <Compile Include="Module.Client\UtilityService.cs" />
-    <Compile Include="Module.Data.Config\UnitBehaviorHidden.cs" />
+    <Compile Include="Module.Data.Config.Behavior\UnitBehaviorHidden.cs" />
     <Compile Include="Module.Generic\IdBase.cs" />
     <Compile Include="Module.Client\RealmControllerClient.cs" />
     <Compile Include="Module.Data.State\PlayerState.cs" />
@@ -85,19 +90,19 @@
     <Compile Include="Module.Data\IRepository.cs" />
     <Compile Include="Module.Data\IUltimateData.cs" />
     <Compile Include="Module.Data.Serialization\TimeSpanConverter.cs" />
-    <Compile Include="Module.Data.Config\UnitBehaviorDefault.cs" />
+    <Compile Include="Module.Data.Config.Behavior\UnitBehaviorDefault.cs" />
     <Compile Include="Module.Data\IUnitBehavior.cs" />
     <Compile Include="Module.Data.Config\ModRouterBase.cs" />
-    <Compile Include="Module.Data.Config\ModRouterAlly.cs" />
-    <Compile Include="Module.Data.Config\UltimateDataAttackPowerMod.cs" />
-    <Compile Include="Module.Data.Config\UltimateDataCastMod.cs" />
-    <Compile Include="Module.Data.Config\ModRouterFoe.cs" />
+    <Compile Include="Module.Data.Config.ModRouter\ModRouterAlly.cs" />
+    <Compile Include="Module.Data.Config.Ultimate\UltimateDataAttackPowerMod.cs" />
+    <Compile Include="Module.Data.Config.Ultimate\UltimateDataCastMod.cs" />
+    <Compile Include="Module.Data.Config.ModRouter\ModRouterFoe.cs" />
     <Compile Include="Module.Data.Config\HeroData.cs" />
     <Compile Include="Module.Data\IDataContainer.cs" />
     <Compile Include="Module.Data.Ids\PlayerId.cs" />
     <Compile Include="Module.Data.Config\RealmData.cs" />
     <Compile Include="Module.Client\RepositoryClient.cs" />
-    <Compile Include="Module.Data.Config\UltimateDataSpeedMod.cs" />
+    <Compile Include="Module.Data.Config.Ultimate\UltimateDataSpeedMod.cs" />
     <Compile Include="Module.Data.Config\UltimateDataBase.cs" />
     <Compile Include="Module.Data.Config\UnitBehaviorBase.cs" />
     <Compile Include="Module.Generic\CommandQueue.cs" />
@@ -137,6 +142,8 @@
     <Compile Include="Module.Resources\ResourceFactory.cs" />
     <Compile Include="Module.Resources\ResourcesExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Render.Realm\RealmComponentBase.cs" />
+    <Compile Include="Render.Realm\UnityCompositionRoot.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -146,11 +153,5 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <Import Project="$(SolutionDir)engine-deploy.targets" Condition="Exists('$(SolutionDir)engine-deploy.targets')" />
 </Project>

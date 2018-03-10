@@ -59,7 +59,7 @@ namespace Sim.Module.Simulation.Transport
 			ICommand command;
 			while(_outgoing.TryConsume(out command))
 			{
-				_context.Resolve<SimulatorServer>().GetConnectionContext(PlayerId).Resolve<SimService>().OnReceived(command);
+				_context.Resolve<SimulatorServer>().GetConnectionContext(PlayerId).Resolve<SimulationService>().OnReceived(command);
 			}
 		}
 

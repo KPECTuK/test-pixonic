@@ -15,7 +15,7 @@
 		<UnityProjectPath Condition=" '$(UnityProjectPath)' == '' ">$(SolutionDir)$(AssemblyName).Unity\</UnityProjectPath>
 		<AssetsPath>$(UnityProjectPath)Assets\</AssetsPath>
 		<AssetsExternalsPath>$(AssetsPath)Externals\</AssetsExternalsPath>
-		<AssetsExternalsCompanyPath>$(AssetsExternalsPath)Crossy\</AssetsExternalsCompanyPath>
+		<AssetsExternalsCompanyPath>$(AssetsExternalsPath)Pixonic\</AssetsExternalsCompanyPath>
 		<AssetsExternalsCompanyEditorPath>$(AssetsExternalsCompanyPath)Editor\</AssetsExternalsCompanyEditorPath>
 		<UnityProjectAssemblies>$(UnityProjectPath)Library\UnityAssemblies\</UnityProjectAssemblies>
 		<ModulesPath>$(SolutionDir)modules\</ModulesPath>
